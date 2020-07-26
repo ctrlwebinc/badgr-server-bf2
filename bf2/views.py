@@ -20,7 +20,7 @@ def badgeinstances_for_issuer_count(request, entity_id):
         issuer = None
     if issuer is None:
         data = {
-        'count': 0
+            'count': 0
         }
     else:
         data = {
@@ -35,7 +35,7 @@ def badgeinstances_for_badgeclass_count(request, entity_id):
         badgeclass = None
     if badgeclass is None:
         data = {
-        'count': 0
+            'count': 0
         }
     else:
         data = {
