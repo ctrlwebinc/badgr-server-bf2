@@ -20,8 +20,16 @@ def badgeinstances_for_issuer_count(request, issuer_slug):
     return JsonResponse(data)
 
 def badgeinstances_for_badgeclass_count(request, badgeclass_slug):
-    badgeclass = BadgeClass.objects.get(entity_id=badgeclass_slug)
-    data = {
-        'count': BadgeInstance.objects.filter(badgeclass_id=badgeclass.id).count()
-    }
+    try:
+        badgeclass = BadgeClass.objects.get(entity_id=badgeclass_slug)
+    except BadgeClass.DoesNotExist:
+        badgeclass = None
+    if badgeclass is None:
+        data = {
+        'count': 0
+        }
+    else:
+        data = {
+            'count': BadgeInstance.objects.filter(badgeclass_id=badgeclass.id).count()
+        }
     return JsonResponse(data)
